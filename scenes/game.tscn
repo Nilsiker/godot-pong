@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqlrux1bcudex"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_5chdm"]
+[ext_resource type="AudioStream" uid="uid://brr1w6tmge7en" path="res://assets/score.mp3" id="2_e778i"]
+[ext_resource type="PackedScene" uid="uid://co3i01n7mkq0j" path="res://scenes/paddle.tscn" id="3_dhr7o"]
+[ext_resource type="PackedScene" uid="uid://b1hry3qib68e0" path="res://scenes/ball.tscn" id="4_rupac"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_brd3p"]
+font_size = 30
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0jfsg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7iua"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g3g8b"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2qjct"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h35kr"]
+normal = Vector2(-1, 0)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_5chdm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="ScoreAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e778i")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 42.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="LeftScoreLabel" type="Label" parent="HUD/MarginContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_brd3p")
+
+[node name="RightScoreLabel" type="Label" parent="HUD/MarginContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_brd3p")
+horizontal_alignment = 2
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Color" type="TextureRect" parent="Background"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+offset_left = -1.0
+offset_right = 1153.0
+offset_bottom = 650.0
+texture = SubResource("CanvasTexture_0jfsg")
+expand_mode = 2
+
+[node name="Divider" type="ColorRect" parent="Background"]
+custom_minimum_size = Vector2(2, 700)
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 575.0
+offset_right = 577.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1, 350)
+
+[node name="PaddleLeft" parent="." instance=ExtResource("3_dhr7o")]
+player = "Player1"
+
+[node name="PaddleRight" parent="." instance=ExtResource("3_dhr7o")]
+position = Vector2(1001, 331)
+player = "Player2"
+
+[node name="BallSpawnPoint" type="Node2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="Ball" parent="." instance=ExtResource("4_rupac")]
+
+[node name="BounceBoundaries" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="BounceBoundaries"]
+position = Vector2(576, 0)
+shape = SubResource("WorldBoundaryShape2D_a7iua")
+
+[node name="Bottom" type="CollisionShape2D" parent="BounceBoundaries"]
+position = Vector2(576, 648)
+shape = SubResource("WorldBoundaryShape2D_g3g8b")
+
+[node name="Left" type="CollisionShape2D" parent="BounceBoundaries"]
+position = Vector2(-28, 330)
+shape = SubResource("WorldBoundaryShape2D_2qjct")
+
+[node name="Right" type="CollisionShape2D" parent="BounceBoundaries"]
+position = Vector2(1174, 334)
+shape = SubResource("WorldBoundaryShape2D_h35kr")
