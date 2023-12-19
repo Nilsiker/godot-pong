@@ -16,9 +16,15 @@ func _process(delta):
 	move_and_slide()
 
 func _unhandled_input(event):
-		if player == "Player1":
-			if event.is_action("w") or event.is_action("s"):
-				_move_direction = Input.get_axis("w", "s")
-		else:
-			if event.is_action("ui_up") or event.is_action("ui_down"):
-				_move_direction = Input.get_axis("ui_up", "ui_down")
+	if event is InputEventScreenTouch or event is InputEventScreenDrag:
+		if player == "Player1" and event.position.x < 200:
+			global_position.y = event.position.y
+		elif player == "Player2" and event.position.x > 1000:
+			global_position.y = event.position.y
+
+	if player == "Player1":
+		if event.is_action("w") or event.is_action("s"):
+			_move_direction = Input.get_axis("w", "s")
+	else:
+		if event.is_action("ui_up") or event.is_action("ui_down"):
+			_move_direction = Input.get_axis("ui_up", "ui_down")

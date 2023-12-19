@@ -41,7 +41,7 @@ offset_right = 170.0
 offset_bottom = 89.0
 pivot_offset = Vector2(18, 44)
 size_flags_horizontal = 4
-text = "0"
+text = "2324"
 label_settings = SubResource("LabelSettings_brd3p")
 metadata/_edit_use_anchors_ = true
 

@@ -12,11 +12,14 @@ config_version=5
 
 config/name="godot-pong"
 run/main_scene="res://scenes/game.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "Mobile")
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/emulate_touch_from_mouse=true
 
 [dotnet]
 
@@ -35,6 +38,11 @@ s={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

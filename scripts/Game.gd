@@ -45,7 +45,14 @@ func update_score(side: Side):
 	match side:
 		Side.LEFT:
 			_left_score += 1
-			$HUD/MarginContainer/LeftScoreLabel.text = str(_left_score)
+			$HUD/LeftScoreLabel.text = str(_left_score)
 		Side.RIGHT:	
 			_right_score += 1
-			$HUD/MarginContainer/RightScoreLabel.text = str(_right_score)
+			$HUD/RightScoreLabel.text = str(_right_score)
+
+func reset_game():
+	_left_score = 0
+	_right_score = 0
+	$HUD/LeftScoreLabel.text = str(_left_score)
+	$HUD/RightScoreLabel.text = str(_right_score)
+	reposition_ball(0)

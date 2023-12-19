@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4aexafntd3au"]
+
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1_ajr1c"]
+[ext_resource type="Script" path="res://scripts/PlatformDependentRotation.gd" id="2_a7ybc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_c0mr2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ncbg1"]
+font_size = 72
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("playButton", "resetButton", "audioButton", "quitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ajr1c")
+playButton = NodePath("VBoxContainer/ButtonPlay")
+resetButton = NodePath("VBoxContainer/ButtonReset")
+audioButton = NodePath("VBoxContainer/ButtonAudio")
+quitButton = NodePath("VBoxContainer/ButtonQuit")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_c0mr2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -49.5
+offset_right = 104.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 289)
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "PONG"
+label_settings = SubResource("LabelSettings_ncbg1")
+
+[node name="ButtonPlay" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "PLAY"
+
+[node name="ButtonReset" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "RESET"
+
+[node name="ButtonAudio" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "AUDIO: ON"
+
+[node name="ButtonQuit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "QUIT
+"
+
+[node name="Node" type="Node" parent="VBoxContainer"]
+script = ExtResource("2_a7ybc")
+_rotation_offset = -90.0
