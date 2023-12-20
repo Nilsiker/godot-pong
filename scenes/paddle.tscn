@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lrxr"]
 size = Vector2(20, 150)
 
-[node name="PaddleLeft" type="CharacterBody2D"]
+[node name="Paddle" type="CharacterBody2D"]
 position = Vector2(153, 331)
 script = ExtResource("1_7ida5")
 

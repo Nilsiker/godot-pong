@@ -3,6 +3,8 @@ extends Control
 @export var playButton: Button
 @export var resetButton: Button
 @export var audioButton: Button
+@export var helpButton: Button
+@export var closeHelpButton: Button
 @export var quitButton: Button
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +14,9 @@ func _ready():
 	resetButton.pressed.connect(_on_reset_button_pressed)
 	audioButton.pressed.connect(_on_audio_button_pressed)
 	quitButton.pressed.connect(_on_quit_button_pressed)
+	
+	helpButton.pressed.connect(func(): $PanelContainer.visible = true)
+	closeHelpButton.pressed.connect(func(): $PanelContainer.visible = false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
