@@ -2,7 +2,7 @@ name: "godot-ci export"
 on: push
 
 env:
-  GODOT_VERSION: 4.0.2
+  GODOT_VERSION: 4.2.1
   EXPORT_NAME: godot-pong
   
 jobs:
@@ -10,7 +10,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.0.2
+      image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,6 +20,7 @@ jobs:
         run: |
           mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          ls ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Web Build
         run: |
           mkdir -v -p build/web
