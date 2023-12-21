@@ -18,8 +18,8 @@ jobs:
           lfs: true
       - name: Setup
         run: |
-          mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -v -p build/web ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable /github/home/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Web Build
         run: godot -v --headless --export-release "Web" ./build/web/index.html
       - name: Upload Artifact
